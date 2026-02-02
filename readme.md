@@ -1,10 +1,10 @@
 # 🗺️ Strategic Governance Mapping Tool - Multi-Framework Analysis
 
-**Comprehensive governance analysis using 5 complementary strategic frameworks with rich visualizations.**
+**Comprehensive governance analysis using 5 complementary strategic frameworks with rich Visualisations.**
 
 ## 🌟 New Features - Enhanced Version
 
-This enhanced version integrates **five strategic frameworks** with sophisticated visualizations for comprehensive governance analysis.
+This enhanced version integrates **five strategic frameworks** with sophisticated Visualisations for comprehensive governance analysis.
 
 ### 🎯 Integrated Frameworks
 
@@ -121,7 +121,7 @@ This enhanced version integrates **five strategic frameworks** with sophisticate
 
 ### 5. Multi-Dimensional Efficiency Matrix
 
-**What it shows:** Cost vs Value vs Duplication in single visualization
+**What it shows:** Cost vs Value vs Duplication in single Visualisation
 
 **Visualisation type:** 3D scatter plot
 
@@ -141,7 +141,7 @@ This enhanced version integrates **five strategic frameworks** with sophisticate
 
 **What it shows:** Governance concentration across value chain and organizational levels
 
-**Visualization type:** 2D density heatmap
+**Visualisation type:** 2D density heatmap
 
 **Axes:**
 - **X:** Value Chain Activities
@@ -433,5 +433,5 @@ All visualisations are:
 
 **Version:** 2.1 - Enhanced Multi-Framework Analysis  
 **Frameworks:** Rogers + Schilling + Smith + Porter (Value Chain) + Porter (Five Forces)  
-**Visualizations:** 8 pages, 15+ interactive charts  
+**Visualisations:** 8 pages, 15+ interactive charts  
 **Status:** Production Ready 🚀
