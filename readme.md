@@ -1,290 +1,437 @@
-# 🗺️ Governance Mapping Tool
+# 🗺️ Strategic Governance Mapping Tool - Multi-Framework Analysis
 
-A Streamlit-based tool for mapping and analysing governance structures to achieve **small, effective governance** through systematic cost reduction and efficiency improvement.
+**Comprehensive governance analysis using 5 complementary strategic frameworks with rich visualizations.**
 
-## 🎯 Purpose
+## 🌟 New Features - Enhanced Version
 
-This governance mapping tool supports organisations facing **cost-cutting pressures** and the **need for efficiency** by:
+This enhanced version integrates **five strategic frameworks** with sophisticated visualizations for comprehensive governance analysis.
 
-- Identifying duplication and overlap in governance structures
-- Analysing high-cost, low-value boards and forums
-- Revealing gaps in decision-making coverage
-- Supporting evidence-based consolidation and streamlining
-- Integrating with ongoing process diagnostic work
+### 🎯 Integrated Frameworks
 
-## 🌟 Key Features
-
-### Governance Mapping
-- Document all boards, forums, networks, and committees
-- Capture decision rights, mandates, and meeting cadence
-- Categorise by outcome focus (Fairer Westminster principles)
-- Distinguish place-based (e.g., Church Street) vs functional governance
-- Map governance to innovation lifecycle stages
-
-### Process Diagnostic Integration
-- Document operational processes alongside governance
-- Distinguish tacit (undocumented) vs explicit (documented) processes
-- Link processes to governance touchpoints
-- Capture findings from consultant-led diagnostic work
-
-### Efficiency Analysis
-- Calculate governance overhead costs
-- Identify high-cost, low-value bodies for elimination
-- Flag duplication risk between bodies
-- Generate cost-value matrices for reform prioritisation
-- Recommend consolidation opportunities
-
-### Theoretical Frameworks
-Integrates three complementary frameworks:
-- **Rogers (2003)**: Diffusion of Innovations - phasing governance reforms
-- **Schilling (2022)**: Innovation Management - structural design choices
-- **Smith (2024)**: Innovation Strategy - exploration/exploitation balance
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
-
-### Installation
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/governance-mapper.git
-cd governance-mapper
-```
-
-2. **Create a virtual environment** (recommended)
-```bash
-# On Windows
-python -m venv venv
-venv\Scripts\activate
-
-# On macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-4. **Run the application**
-```bash
-streamlit run app.py
-```
-
-The app will open in your default web browser at `http://localhost:8501`
-
-## 📖 Usage Guide
-
-### 1. Home Page
-- Understand the goal: small, effective governance
-- Learn different approaches to achieving efficiency
-- Review theoretical foundations
-
-### 2. Governance Bodies
-- **Add bodies**: Document all boards, forums, committees
-- **Categorise**: By outcome focus, innovation posture, Rogers category
-- **Assess**: Efficiency scores, cost impact, duplication risk
-- **Distinguish**: Place-based vs functional, community-led vs corporate
-
-### 3. Processes & Diagnostic
-- **Map processes**: Commercial, place-based prevention, etc.
-- **Document type**: Tacit vs explicit knowledge
-- **Capture findings**: Notes from ongoing consultant work
-- **Link to governance**: Which bodies govern which processes
-
-### 4. Tacit vs Explicit Knowledge
-- Understand the difference between documented and undocumented processes
-- Identify conversion opportunities (tacit to explicit)
-- Calculate knowledge preservation priorities
-- Reduce dependency on key individuals
-
-### 5. Efficiency Analysis
-- Identify high-cost, low-value bodies
-- Flag duplication risks
-- Generate cost-value matrices
-- Prioritise reform opportunities
-
-### 6. Visualisations
-- Outcome focus distribution (Fairer Westminster principles)
-- Innovation posture balance (exploit vs explore)
-- Rogers adoption readiness
-- Process documentation status
-
-### 7. Export Data
-- Download CSV or JSON formats
-- Export diagnostic notes
-- Create comprehensive governance maps
-- Import previously exported work
-
-## 🎯 Governance Design Approaches
-
-This tool supports analysis through multiple strategic lenses:
-
-**1. Consolidation Approach** (Centralised)
-- Merge multiple boards into fewer, more powerful bodies
-- Reduced overhead, faster strategic decisions
-
-**2. Distributed Approach** (Decentralised)
-- Push decisions closer to delivery
-- Better local context, faster operational decisions
-
-**3. Hybrid Approach** (Strategic-Operational Split)
-- Small strategic layer for policy and resources
-- Distributed operational layer for delivery decisions
-
-**4. Outcome-Based Approach** (Fairer Westminster Principles)
-- Organise governance around outcome themes
-- Cross-cutting boards focused on measurable results
-
-**5. Place-Based Approach** (Community & Geographic)
-- Governance organised by place (Church Street, Queen's Park, etc.)
-- Community-led boards with local decision-making
-
-## 📊 Key Concepts
-
-### Outcome Focus (Fairer Westminster Principles)
-Governance should be organised around strategic outcomes:
-- Fairer Westminster (reducing inequality)
-- Net zero and climate resilience
-- Inclusive economic growth
-- Housing affordability and quality
-- Public health and wellbeing
-- Community safety
-- Place-based outcomes
-
-### Tacit vs Explicit Knowledge
-**Tacit**: Knowledge in people's heads, difficult to transfer
-- Risk: Lost when people leave
-- Priority: Convert to explicit where cost-effective
-
-**Explicit**: Documented knowledge, easily shared
-- Benefit: Preserved, scalable, improvable
-- Enables: Efficiency, onboarding, automation
-
-### Innovation Posture (Schilling)
-**Exploit**: Focus on efficiency, cost reduction, incremental improvement
-**Explore**: Focus on transformation, radical change, new approaches
-**Ambidextrous**: Balance both
-
-For cost-cutting objectives, exploit-focused governance is typically appropriate.
-
-## 💡 Use Cases
-
-### Strategic Planning
-- Design optimal governance structure for strategic priorities
-- Balance efficiency with operational flexibility
-- Align governance with organisational strategy
-
-### Cost Reduction
-- Identify high-cost, low-value governance
-- Eliminate unnecessary boards and forums
-- Consolidate duplicative structures
-- Reduce meeting overhead
-
-### Process Improvement
-- Link process diagnostic findings to governance
-- Identify processes with excessive governance burden
-- Reveal processes with insufficient governance
-- Document tacit knowledge to reduce dependency
-
-### Reform Implementation
-- Phase reforms using Rogers adopter categories
-- Demonstrate success with innovators and early adopters
-- Build evidence base for wider rollout
-- Address concerns of cautious adopters
-
-## 📁 Project Structure
-
-```
-governance-mapper/
-├── app.py                 # Main Streamlit application
-├── requirements.txt       # Python dependencies
-├── README.md             # This file
-├── sample_data.json      # Example Westminster governance map
-└── docs/
-    ├── QUICKSTART.md     # Quick start guide
-    └── THEORY.md         # Detailed theoretical background
-```
-
-## 🛠️ Technical Details
-
-### Built With
-- **Streamlit**: Web application framework
-- **Pandas**: Data manipulation and analysis
-- **Plotly**: Interactive visualisations
-- **Python 3.8+**: Core programming language
-
-### Data Storage
-- Uses Streamlit session state for runtime data
-- Exports to CSV and JSON formats
-- No database required - runs entirely in browser
-
-## 📚 Theoretical Foundations
-
-### Rogers' Diffusion of Innovations (2003)
-Application: Phase governance reforms by adopter category
-- **Innovators** (2.5%): Pilot reforms in progressive areas
-- **Early Adopters** (13.5%): Demonstrate success
-- **Early Majority** (34%): Roll out proven reforms
-- **Late Majority** (34%): Address concerns, provide support
-- **Laggards** (16%): Mandate once established
-
-### Schilling's Innovation Management (2022)
-Application: Inform governance structure design
-- **Lifecycle Stages**: Map governance coverage across idea→learning
-- **Structural Choices**: Centralised/distributed, formal/informal
-- **Innovation Posture**: Exploit (efficiency) vs Explore (transformation)
-
-### Smith's Innovation Strategy (2024)
-Application: Guide governance optimisation
-- **Exploration vs Exploitation**: Balance efficiency and adaptation
-- **Value Creation**: Governance should add value, not overhead
-- **Knowledge Management**: Convert tacit to explicit knowledge
-
-## 🔧 Best Practices
-
-### Starting Your Map
-1. Begin with comprehensive inventory of all governance bodies
-2. Be brutally honest about efficiency and value
-3. Identify duplication early
-4. Link processes to governance from the start
-5. Document diagnostic findings as they emerge
-
-### Data Quality
-- Use consistent terminology across all entries
-- Be specific about decision rights and mandates
-- Quantify meeting cadence and costs where possible
-- Validate with stakeholders before making recommendations
-
-### Reform Recommendations
-- Ground recommendations in efficiency analysis
-- Quantify cost savings where possible
-- Phase reforms using Rogers categories
-- Build evidence through pilots before rollout
-- Address tacit knowledge risks in transition plans
-
-## 📝 License
-
-This project is licensed under the MIT Licence - see the LICENSE file for details.
-
-## 🙋 Support
-
-For questions, issues, or suggestions:
-- Open an issue on GitHub
-
-## 🌟 Acknowledgements
-
-Based on theoretical frameworks from:
-- **Rogers, E. M.** (2003). *Diffusion of Innovations* (5th ed.). Free Press.
-- **Schilling, M. A.** (2022). *Strategic Management of Technological Innovation* (7th ed.). McGraw-Hill.
-- **Smith, D.** (2024). *Exploring Innovation* (4th ed.). McGraw-Hill.
+1. **Rogers (2003)** - Diffusion of Innovations
+2. **Schilling (2022)** - Stakeholder Analysis  
+3. **Smith (2024)** - Knowledge Management
+4. **Porter** - Value Chain Analysis
+5. **Porter** - Five Forces Analysis
 
 ---
 
-**Version**: 2.0.0  
-**Last Updated**: February 2026  
-**Status**: Production Ready
+## 📊 New Visualisations
+
+### 1. Stakeholder Power-Interest Matrix (Schilling)
+
+**What it shows:** Maps governance bodies by their stakeholders' power and interest levels
+
+**Visualisation type:** Interactive scatter plot with quadrants
+
+**Quadrants:**
+- **Key Players** (High Power, High Interest) → Manage Closely ⭐
+- **Keep Satisfied** (High Power, Lower Interest) → High priority ⚡
+- **Keep Informed** (Lower Power, High Interest) → Regular updates 📢
+- **Monitor** (Lower Power, Lower Interest) → Minimal effort 👀
+
+**Use case:** Prioritise stakeholder engagement strategies
+
+**Example insight:** Cabinet and Joint Health Board are Key Players requiring close management
+
+---
+
+### 2. Value Chain Coverage Analysis (Porter)
+
+**What it shows:** How governance bodies map to Porter's value chain activities
+
+**Visualisations:**
+- **Horizontal bar charts** showing coverage of primary and support activities
+- **Sankey flow diagram** showing primary→support activity connections
+- **Gap analysis** identifying under-covered activities
+
+**Porter's Value Chain Components:**
+
+**Primary Activities:**
+- Service Strategy
+- Service Delivery  
+- Procurement Operations
+- Technology & Innovation
+- Marketing & Communications
+
+**Support Activities:**
+- Infrastructure
+- Technology Development
+- Procurement
+- Human Resource Management
+- Community Development
+- Partnership Infrastructure
+
+**Use case:** Identify governance gaps in value creation activities
+
+**Example insight:** Procurement Operations over-covered (Commercial Gateway + Procuring Board duplication)
+
+---
+
+### 3. Five Forces Radar Chart (Porter)
+
+**What it shows:** Governance coverage of Porter's five competitive forces
+
+**Visualisation type:** Radar/spider chart
+
+**Five Forces (adapted for public sector):**
+
+1. **Competitive Rivalry** - Other councils, service providers
+   - Example: Cabinet, Joint Health Board
+   
+2. **Supplier Power** - Contractors, consultants, service suppliers
+   - Example: Commercial Gateway Review Board, Procuring Board
+   
+3. **Buyer Power** - Residents, service users, communities
+   - Example: Church Street JV Board, Beyond Lisson Grove Board
+   
+4. **Threat of Substitutes** - Alternative delivery models (digital, community-led)
+   - Example: Climate Leadership Group
+   
+5. **Threat of New Entrants** - New providers, technologies, approaches
+   - Example: Digital Governance Board
+
+**Use case:** Ensure governance addresses all competitive pressures
+
+**Example insight:** All five forces covered, balanced governance response
+
+---
+
+### 4. Governance Network Diagram
+
+**What it shows:** Relationships between governance bodies based on shared attributes
+
+**Visualisation type:** Interactive network graph using NetworkX
+
+**Connections weighted by:**
+- Shared Porter's five forces focus (+2)
+- Overlapping value chain activities (+1)
+- Both have high duplication risk (+2)
+
+**Node properties:**
+- **Size** = Value added
+- **Colour** = Efficiency score (red → yellow → green)
+- **Position** = Spring-layout algorithm showing natural clustering
+
+**Use case:** Identify clusters for potential consolidation
+
+**Example insight:** Commercial Gateway and Procuring Board densely connected (duplication)
+
+---
+
+### 5. Multi-Dimensional Efficiency Matrix
+
+**What it shows:** Cost vs Value vs Duplication in single visualization
+
+**Visualisation type:** 3D scatter plot
+
+**Dimensions:**
+- **X-axis:** Cost Impact
+- **Y-axis:** Value Added
+- **Bubble size:** Duplication Risk
+- **Colour:** Porter's Five Forces focus
+
+**Use case:** Holistic view of efficiency, value, and duplication
+
+**Example insight:** See which bodies are high-cost/low-value AND have high duplication
+
+---
+
+### 6. Density Heatmap - Value Chain × Level
+
+**What it shows:** Governance concentration across value chain and organizational levels
+
+**Visualization type:** 2D density heatmap
+
+**Axes:**
+- **X:** Value Chain Activities
+- **Y:** Organizational Level (Strategic/Tactical/Community)
+- **Colour intensity:** Number of governance bodies
+
+**Use case:** Spot over-governed and under-governed areas
+
+**Example insight:** Strategic level concentrated in Service Strategy, gaps in Technology
+
+---
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+### Navigation
+
+The tool has **8 comprehensive pages:**
+
+1. **🏠 Home** - Dashboard with key metrics and overview charts
+2. **🏛️ View Bodies** - Detailed view with filters by power, level, forces
+3. **📈 Efficiency Analysis** - Cost-value matrix, duplication identification
+4. **👥 Stakeholder Analysis** - Schilling's power-interest matrix with engagement strategies
+5. **⛓️ Value Chain Mapping** - Porter's value chain coverage, Sankey flow, gap analysis
+6. **⚔️ Five Forces Analysis** - Radar chart, forces detail, gap identification
+7. **🌐 Network View** - Interactive network diagram showing body relationships
+8. **📥 Export** - Download data and comprehensive executive summary
+
+---
+
+## 📚 Framework Details
+
+### Schilling's Stakeholder Analysis (2022)
+
+**Theoretical basis:** Maps stakeholders by two dimensions:
+- **Power:** Ability to influence decisions (1-5)
+- **Interest:** Level of concern about outcomes (1-5)
+
+**Application to governance:**
+- Each governance body assessed for its key stakeholders' power and interest
+- Determines engagement strategy
+- Example: Cabinet has both high power (5) and high interest (5) = Key Player
+
+**Recommended strategies:**
+- **Key Players (4-5, 4-5):** Fully engage, involve in decisions, regular updates
+- **Keep Satisfied (4-5, 1-3):** Keep satisfied but don't overwhelm  
+- **Keep Informed (1-3, 4-5):** Adequate information, consult on issues
+- **Monitor (1-3, 1-3):** Minimal effort, general communications
+
+---
+
+### Porter's Value Chain
+
+**Theoretical basis:** Organizations create value through:
+- **Primary activities:** Directly create value (operations, service delivery)
+- **Support activities:** Enable primary activities (IT, HR, procurement)
+
+**Application to governance:**
+- Map each governance body to primary and support activities it governs
+- Identify gaps where no governance exists
+- Spot duplication where multiple bodies govern same activity
+
+**Example findings:**
+- Procurement Operations: 2 bodies (duplication!)
+- Technology & Innovation: 1 body (Digital Governance Board)
+- Marketing & Communications: Gap - no dedicated governance
+
+---
+
+### Porter's Five Forces
+
+**Theoretical basis:** Five competitive forces shape strategy:
+1. Rivalry among existing competitors
+2. Threat of new entrants
+3. Threat of substitute products/services
+4. Bargaining power of buyers
+5. Bargaining power of suppliers
+
+**Adaptation for public sector governance:**
+- **Competitive Rivalry:** Other councils, alternative providers
+- **Supplier Power:** Contractors, consultants, outsourced services
+- **Buyer Power:** Residents, service users, community voice
+- **Threat of Substitutes:** Digital services, community-led delivery, privatization
+- **Threat of New Entrants:** New technologies, disruptive providers, policy changes
+
+**Application to governance:**
+- Each body assessed for which competitive force it primarily addresses
+- Radar chart shows balanced coverage
+- Gaps indicate strategic vulnerabilities
+
+**Example insights:**
+- Strong coverage of Supplier Power (2 procurement boards)
+- Good Buyer Power representation (2 place-based boards)
+- All forces covered (balanced strategic governance)
+
+---
+
+## 💡 Using Multiple Frameworks Together
+
+### Example Analysis Workflow:
+
+**Step 1: Efficiency Analysis**
+- Identify Commercial Gateway + Procuring Board duplication
+- Both score high on duplication risk (4 and 5)
+
+**Step 2: Stakeholder Analysis**  
+- Both have Power=4, Interest=4 (Key Players quadrant)
+- Consolidation won't lose critical stakeholder engagement
+
+**Step 3: Value Chain Analysis**
+- Both govern "Procurement Operations" (primary)
+- Both link to "Procurement" (support)
+- Confirms functional overlap
+
+**Step 4: Five Forces Analysis**
+- Both address "Supplier Power"
+- Only these two address this force
+- Consolidation still leaves force covered
+
+**Step 5: Network Analysis**
+- Dense connection between these two bodies
+- Clustered together (shared attributes)
+- Visual confirmation of consolidation opportunity
+
+**Conclusion:** Multiple frameworks converge on same recommendation: **consolidate procurement governance**
+
+---
+
+## 📊 Visualisation Best Practices
+
+### Design Principles Applied:
+
+**1. Colour Coding Consistency**
+- Red-Yellow-Green for efficiency (bad → good)
+- Blues for primary activities
+- Greens for support activities
+- Consistent across all charts
+
+**2. Interactive Elements**
+- Hover tooltips show detailed data
+- Click to filter and explore
+- Responsive to user interaction
+
+**3. Multi-Dimensional Display**
+- Use of size, color, position simultaneously
+- Packs more information without clutter
+- Example: Network diagram (size=value, color=efficiency, position=relationships)
+
+**4. Quadrant/Segment Analysis**
+- Clear visual boundaries (dotted lines)
+- Labelled regions with recommendations
+- Examples: Stakeholder matrix, Cost-Value matrix
+
+**5. Flow and Connection**
+- Sankey diagrams show process flows
+- Network graphs show relationships
+- Lines indicate connections and dependencies
+
+---
+
+## 🎯 Key Questions Answered
+
+### Strategic Questions:
+
+✅ **"Who are our key stakeholders?"** → Stakeholder Power-Interest Matrix  
+✅ **"Where do we have governance gaps?"** → Value Chain Coverage Analysis  
+✅ **"Which competitive forces lack governance?"** → Five Forces Radar  
+✅ **"How do governance bodies relate to each other?"** → Network Diagram  
+✅ **"Where should we focus stakeholder engagement?"** → Schilling Quadrants  
+
+### Operational Questions:
+
+✅ **"Which boards have duplication?"** → Network clustering + Value Chain overlap  
+✅ **"What's the cost-value-duplication trade-off?"** → Multi-dimensional scatter  
+✅ **"Which activities are over/under-governed?"** → Density heatmap  
+✅ **"Should we consolidate these boards?"** → Check all 5 frameworks  
+
+---
+
+## 📈 Expected Outputs
+
+### Quantitative:
+- **Stakeholder metrics:** Number in each power-interest quadrant
+- **Value chain coverage:** % of activities with governance
+- **Five forces balance:** Coverage score for each force  
+- **Network density:** Clustering coefficient showing potential consolidation
+- **Efficiency scores:** Average, distribution, improvement potential
+
+### Qualitative:
+- **Stakeholder engagement strategies** for each quadrant
+- **Value chain gap analysis** with recommendations
+- **Five forces response assessment**
+- **Network insights** on natural groupings
+- **Consolidation recommendations** backed by multiple frameworks
+
+### Visual:
+- **8 interactive visualisations** across 8 pages
+- **Executive dashboard** with key metrics
+- **Export-ready charts** for reports and presentations
+- **Evidence base** for governance reform proposals
+
+---
+
+## 🔄 Updating to Enhanced Version
+
+### If you have the basic version:
+
+1. **Replace app.py** with the enhanced version
+2. **Update requirements.txt** to include `networkx>=3.0`
+3. **Redeploy** on Streamlit Cloud (auto-updates in 1-2 minutes)
+
+Your data structure is compatible - the enhanced version adds new fields but works with existing data.
+
+---
+
+## 💼 Example Use Case: Procurement Governance
+
+**Problem:** Two boards govern procurement (Commercial Gateway + Procuring)
+
+**Multi-Framework Analysis:**
+
+| Framework | Finding | Recommendation |
+|-----------|---------|----------------|
+| **Efficiency** | Both high cost, medium value, duplication 4-5 | Consolidate |
+| **Stakeholder (Schilling)** | Both Power=4, Interest=4 (Key Players) | Won't lose engagement |
+| **Value Chain (Porter)** | Both govern "Procurement Operations" | Functional overlap confirmed |
+| **Five Forces (Porter)** | Both address "Supplier Power" only | Can merge without gaps |
+| **Network** | Densely connected, clustered together | Natural consolidation candidates |
+
+**Integrated Recommendation:** **Merge into single Strategic Procurement Board**
+
+**Evidence base:** 5 frameworks × 3+ visualisations = Compelling case
+
+**Estimated saving:** £85,000 annually
+
+---
+
+## 🎨 Visualisation Gallery
+
+This tool provides:
+- ✅ **Scatter plots** with size, colour, and hover tooltips
+- ✅ **Radar charts** showing balanced coverage
+- ✅ **Sankey flow diagrams** showing process flows
+- ✅ **Network graphs** with physics-based layouts
+- ✅ **Heatmaps** showing concentration patterns
+- ✅ **Bar charts** (horizontal and vertical) with colour scales
+- ✅ **Quadrant matrices** with strategic recommendations
+- ✅ **Multi-dimensional plots** combining 3+ variables
+
+All visualisations are:
+- **Interactive** (hover, zoom, pan)
+- **Export-ready** (PNG, SVG download)
+- **Professionally styled** (consistent colours, fonts, labels)
+- **Insight-driven** (clear recommendations)
+
+---
+
+## 📖 Further Reading
+
+**Rogers, E. M.** (2003). *Diffusion of Innovations* (5th ed.). Free Press.
+
+**Schilling, M. A.** (2022). *Strategic Management of Technological Innovation* (7th ed.). McGraw-Hill.
+- Chapter 2: Sources of Innovation
+- Chapter 14: Managing the New Product Development Process (includes stakeholder analysis)
+
+**Smith, D.** (2024). *Exploring Innovation* (4th ed.). McGraw-Hill.
+
+**Porter, M. E.** (1985). *Competitive Advantage: Creating and Sustaining Superior Performance*. Free Press.
+- Value Chain Analysis framework
+- Five Forces framework
+
+---
+
+## 🆘 Support
+
+**Questions about:**
+- Theoretical frameworks → See framework sections above
+- Visualisations → Check Visualisation Gallery section
+- Technical issues → Open GitHub issue
+- Deployment → See DEPLOYMENT.md (if available)
+
+---
+
+**Version:** 2.1 - Enhanced Multi-Framework Analysis  
+**Frameworks:** Rogers + Schilling + Smith + Porter (Value Chain) + Porter (Five Forces)  
+**Visualizations:** 8 pages, 15+ interactive charts  
+**Status:** Production Ready 🚀
