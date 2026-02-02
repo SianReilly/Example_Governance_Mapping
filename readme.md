@@ -1,6 +1,6 @@
 # 🗺️ Strategic Governance Mapping Tool - Multi-Framework Analysis
 
-**Comprehensive governance analysis using 5 complementary strategic frameworks with rich Visualisations.**
+**Comprehensive governance analysis using 5 complementary strategic frameworks with rich visualisations.**
 
 ## 🌟 New Features - Enhanced Version
 
