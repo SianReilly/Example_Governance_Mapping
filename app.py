@@ -71,7 +71,7 @@ SAMPLE_DATA = {
             "Type": "Cabinet", 
             "Level": "Strategic",
             "Outcome_Focus": "Fairer Westminster, Service Efficiency",
-            "Fairer_Westminster_Alignment": "Strong Voice, Opportunity, Quality of Life",
+            "Fairer_Westminster_Alignment": "Fairer Council, Fairer Communities",
             "Process_Type": "Explicit",
             "Efficiency_Score": 4,
             "Cost_Impact": "Very High",
@@ -92,7 +92,7 @@ SAMPLE_DATA = {
             "Type": "Board",
             "Level": "Tactical",
             "Outcome_Focus": "Service Efficiency",
-            "Fairer_Westminster_Alignment": "Quality of Life",
+            "Fairer_Westminster_Alignment": "Fairer Economy",
             "Process_Type": "Mixed",
             "Efficiency_Score": 2,
             "Cost_Impact": "High",
@@ -113,7 +113,7 @@ SAMPLE_DATA = {
             "Type": "Board",
             "Level": "Tactical",
             "Outcome_Focus": "Service Efficiency",
-            "Fairer_Westminster_Alignment": "Quality of Life",
+            "Fairer_Westminster_Alignment": "Fairer Economy",
             "Process_Type": "Partially Explicit",
             "Efficiency_Score": 3,
             "Cost_Impact": "High",
@@ -134,7 +134,7 @@ SAMPLE_DATA = {
             "Type": "Place-Based Board",
             "Level": "Community",
             "Outcome_Focus": "Place-Based, Fairer Westminster, Housing",
-            "Fairer_Westminster_Alignment": "Strong Voice, Opportunity, Safe & Inclusive",
+            "Fairer_Westminster_Alignment": "Fairer Council, Fairer Housing, Fairer Communities",
             "Process_Type": "Mixed",
             "Efficiency_Score": 3,
             "Cost_Impact": "Medium",
@@ -155,7 +155,7 @@ SAMPLE_DATA = {
             "Type": "Board",
             "Level": "Tactical",
             "Outcome_Focus": "Net Zero, Place-Based",
-            "Fairer_Westminster_Alignment": "Quality of Life, Greener City",
+            "Fairer_Westminster_Alignment": "Fairer Environment",
             "Process_Type": "Explicit",
             "Efficiency_Score": 4,
             "Cost_Impact": "Medium",
@@ -176,7 +176,7 @@ SAMPLE_DATA = {
             "Type": "Board",
             "Level": "Strategic",
             "Outcome_Focus": "Public Health, Fairer Westminster",
-            "Fairer_Westminster_Alignment": "Opportunity, Quality of Life, Safe & Inclusive",
+            "Fairer_Westminster_Alignment": "Fairer Communities, Fairer Housing",
             "Process_Type": "Explicit",
             "Efficiency_Score": 3,
             "Cost_Impact": "High",
@@ -197,7 +197,7 @@ SAMPLE_DATA = {
             "Type": "Board",
             "Level": "Tactical",
             "Outcome_Focus": "Digital Transformation, Service Efficiency",
-            "Fairer_Westminster_Alignment": "Strong Voice, Opportunity, Quality of Life",
+            "Fairer_Westminster_Alignment": "Fairer Council, Fairer Communities",
             "Process_Type": "Explicit",
             "Efficiency_Score": 4,
             "Cost_Impact": "High",
@@ -218,7 +218,7 @@ SAMPLE_DATA = {
             "Type": "Place-Based Board",
             "Level": "Community",
             "Outcome_Focus": "Place-Based, Fairer Westminster, Community Safety",
-            "Fairer_Westminster_Alignment": "Strong Voice, Safe & Inclusive, Opportunity",
+            "Fairer_Westminster_Alignment": "Fairer Council, Fairer Communities, Fairer Economy",
             "Process_Type": "Mixed",
             "Efficiency_Score": 2,
             "Cost_Impact": "Low",
@@ -244,13 +244,13 @@ SAMPLE_DATA = {
     }
 }
 
-# Fairer Westminster principles
+# Fairer Westminster principles - The five key pillars
 FAIRER_WESTMINSTER_PRINCIPLES = {
-    "Strong Voice": "Residents have a strong voice and are at the heart of our decision-making",
-    "Opportunity": "Everyone has the opportunity to participate and succeed in the city",
-    "Quality of Life": "Everyone can enjoy a high quality of life in our city",
-    "Safe & Inclusive": "Westminster is a safe and inclusive city for all",
-    "Greener City": "Westminster is a greener city, leading on climate action"
+    "Fairer Communities": "Reducing inequality, enhancing safety (including doubling CCTV), and improving access to education and culture",
+    "Fairer Housing": "Delivering greener, more affordable, and social housing (70% on council-owned developments) and reducing homelessness",
+    "Fairer Economy": "Supporting local businesses, boosting high streets, and promoting inclusive growth for all residents",
+    "Fairer Environment": "Targeting net-zero for council by 2030 and city by 2040 through sustainability, air quality improvements, and climate action",
+    "Fairer Council": "Listening to and acting on resident feedback through citizens' assemblies and participatory, transparent decision-making"
 }
 
 # Initialise with sample data
@@ -459,11 +459,9 @@ if st.session_state.get('example_mode'):
     st.sidebar.success("📚 EXAMPLE MODE")
     st.sidebar.markdown("*Westminster sample data*")
 
-# Edit mode toggle
-st.session_state.edit_mode = st.sidebar.checkbox("✏️ Edit Mode", value=st.session_state.edit_mode)
-
 page = st.sidebar.radio("Navigate", [
     "🏠 Home",
+    "➕ Manage Bodies",
     "🏛️ Governance Bodies", 
     "📊 Efficiency Analysis",
     "👥 Stakeholder Analysis",
@@ -616,53 +614,127 @@ if page == "🏠 Home":
     fig.update_layout(height=400)
     st.plotly_chart(fig, use_container_width=True)
 
-# GOVERNANCE BODIES
-elif page == "🏛️ Governance Bodies":
-    st.title("🏛️ Governance Bodies Overview")
+# MANAGE BODIES - Dedicated page for adding and editing
+elif page == "➕ Manage Bodies":
+    st.title("➕ Manage Governance Bodies")
+    st.markdown("*Add new bodies or edit existing entries - all changes update visualisations instantly*")
     
     df = st.session_state.bodies_df
     
-    # Add new body option
-    if st.session_state.edit_mode:
-        with st.expander("➕ Add New Governance Body"):
-            with st.form("add_body_form"):
-                col1, col2, col3 = st.columns(3)
-                
-                with col1:
-                    new_name = st.text_input("Name*")
-                    new_type = st.selectbox("Type*", ["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership"])
-                    new_level = st.selectbox("Level*", ["Strategic", "Tactical", "Operational", "Community"])
-                    new_outcome = st.text_input("Outcome Focus*")
-                
-                with col2:
-                    fw_options = list(FAIRER_WESTMINSTER_PRINCIPLES.keys())
-                    new_fw = st.multiselect("Fairer Westminster Alignment*", fw_options)
-                    new_process = st.selectbox("Process Type*", ["Explicit", "Partially Explicit", "Mixed", "Tacit"])
-                    new_efficiency = st.slider("Efficiency Score*", 1, 5, 3)
-                    new_cost = st.selectbox("Cost Impact*", ["Low", "Medium", "High", "Very High"])
-                
-                with col3:
-                    new_value = st.slider("Value Added*", 1, 5, 3)
-                    new_dup = st.slider("Duplication Risk*", 1, 5, 1)
-                    new_rag = st.selectbox("RAG Status*", ["Green", "Amber", "Red"])
-                    new_rag_rec = st.selectbox("RAG Recommendation*", ["Keep", "Merge", "Close"])
-                
-                col4, col5 = st.columns(2)
-                
-                with col4:
-                    new_primary = st.text_area("Primary Stakeholders*")
-                    new_secondary = st.text_area("Secondary Stakeholders")
-                    new_power = st.selectbox("Stakeholder Power*", ["Low", "Medium", "High"])
-                
-                with col5:
-                    new_interest = st.selectbox("Stakeholder Interest*", ["Low", "Medium", "High", "Very High"])
-                    new_activities = st.text_area("Value Chain Activities*")
-                    new_speed = st.selectbox("Decision Speed*", ["Fast", "Medium", "Slow"])
-                    new_posture = st.selectbox("Innovation Posture*", ["Exploit", "Explore", "Ambidextrous"])
-                
-                submitted = st.form_submit_button("Add Governance Body")
-                
-                if submitted and new_name and new_outcome and new_fw and new_primary and new_activities:
+    tab1, tab2 = st.tabs(["➕ Add New Body", "✏️ Edit Existing Body"])
+    
+    # ADD NEW BODY TAB
+    with tab1:
+        st.subheader("Add New Governance Body")
+        st.markdown("Fill in the form below to add a new governance body. All fields marked with * are required.")
+        
+        with st.form("add_new_body", clear_on_submit=True):
+            st.markdown("### Basic Information")
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                new_name = st.text_input("Body Name*", help="Official name of the governance body")
+                new_type = st.selectbox("Type*", ["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership", "Working Group"],
+                                       help="Classification of the body")
+            
+            with col2:
+                new_level = st.selectbox("Organisational Level*", ["Strategic", "Tactical", "Operational", "Community"],
+                                        help="Where this body sits in the governance hierarchy")
+                new_outcome = st.text_input("Outcome Focus*", help="Primary outcomes this body targets")
+            
+            with col3:
+                fw_options = list(FAIRER_WESTMINSTER_PRINCIPLES.keys())
+                new_fw = st.multiselect("Fairer Westminster Pillars*", fw_options,
+                                       help="Select all relevant pillars")
+                new_process = st.selectbox("Process Type*", ["Explicit", "Partially Explicit", "Mixed", "Tacit"],
+                                          help="How well-documented are the processes?")
+            
+            st.markdown("---")
+            st.markdown("### Performance Metrics")
+            col4, col5, col6, col7 = st.columns(4)
+            
+            with col4:
+                new_efficiency = st.select_slider("Efficiency Score*", options=[1, 2, 3, 4, 5], value=3,
+                                                 help="1=Very Low, 5=Very High")
+            
+            with col5:
+                new_value = st.select_slider("Value Added*", options=[1, 2, 3, 4, 5], value=3,
+                                            help="1=Very Low, 5=Very High")
+            
+            with col6:
+                new_dup = st.select_slider("Duplication Risk*", options=[1, 2, 3, 4, 5], value=1,
+                                          help="1=No Risk, 5=High Risk")
+            
+            with col7:
+                new_cost = st.selectbox("Cost Impact*", ["Low", "Medium", "High", "Very High"],
+                                       help="Resource intensity of this body")
+            
+            st.markdown("---")
+            st.markdown("### RAG Assessment")
+            col8, col9 = st.columns(2)
+            
+            with col8:
+                new_rag = st.radio("RAG Status*", ["Green", "Amber", "Red"], horizontal=True,
+                                  help="🟢 Green = Keep | 🟡 Amber = Review | 🔴 Red = Urgent Action")
+            
+            with col9:
+                new_rag_rec = st.radio("Recommendation*", ["Keep", "Merge", "Close"], horizontal=True,
+                                      help="Strategic recommendation for this body")
+            
+            st.markdown("---")
+            st.markdown("### Stakeholder Information")
+            col10, col11 = st.columns(2)
+            
+            with col10:
+                new_primary = st.text_area("Primary Stakeholders*", 
+                                          help="Key participants (comma-separated)",
+                                          placeholder="e.g., Council Members, Chief Executive, Directors")
+                new_power = st.select_slider("Stakeholder Power*", options=["Low", "Medium", "High"], value="Medium",
+                                            help="Overall power of stakeholders")
+            
+            with col11:
+                new_secondary = st.text_area("Secondary Stakeholders", 
+                                            help="Other affected parties (comma-separated)",
+                                            placeholder="e.g., Residents, Media, Government")
+                new_interest = st.select_slider("Stakeholder Interest*", options=["Low", "Medium", "High", "Very High"], value="Medium",
+                                               help="Level of stakeholder interest")
+            
+            st.markdown("---")
+            st.markdown("### Operational Details")
+            col12, col13 = st.columns(2)
+            
+            with col12:
+                new_activities = st.text_area("Value Chain Activities*", 
+                                             help="Key activities (comma-separated)",
+                                             placeholder="e.g., Strategic Decision-Making, Resource Allocation, Policy Setting")
+                new_speed = st.select_slider("Decision Speed*", options=["Fast", "Medium", "Slow"], value="Medium",
+                                            help="How quickly can this body make decisions?")
+            
+            with col13:
+                new_posture = st.selectbox("Innovation Posture*", ["Exploit", "Explore", "Ambidextrous"],
+                                          help="Exploit = Optimise existing | Explore = Try new | Ambidextrous = Both")
+            
+            st.markdown("---")
+            
+            col_submit, col_reset = st.columns([1, 4])
+            
+            with col_submit:
+                submitted = st.form_submit_button("✅ Add Body", type="primary", use_container_width=True)
+            
+            if submitted:
+                # Validation
+                if not new_name:
+                    st.error("❌ Body Name is required!")
+                elif not new_outcome:
+                    st.error("❌ Outcome Focus is required!")
+                elif not new_fw:
+                    st.error("❌ Please select at least one Fairer Westminster Pillar!")
+                elif not new_primary:
+                    st.error("❌ Primary Stakeholders are required!")
+                elif not new_activities:
+                    st.error("❌ Value Chain Activities are required!")
+                else:
+                    # Create new body
                     new_body = {
                         "Name": new_name,
                         "Type": new_type,
@@ -685,9 +757,170 @@ elif page == "🏛️ Governance Bodies":
                         "Innovation_Posture": new_posture
                     }
                     
+                    # Add to dataframe
                     st.session_state.bodies_df = pd.concat([st.session_state.bodies_df, pd.DataFrame([new_body])], ignore_index=True)
-                    st.success(f"✅ Added {new_name}")
-                    st.rerun()
+                    st.success(f"✅ Successfully added **{new_name}**! All visualisations have been updated.")
+                    st.balloons()
+                    st.info("💡 Navigate to other pages to see how your new entry affects the analyses.")
+    
+    # EDIT EXISTING BODY TAB
+    with tab2:
+        st.subheader("Edit Existing Governance Body")
+        st.markdown("Select a body to edit, make your changes, and save. You can also delete bodies from here.")
+        
+        if len(df) == 0:
+            st.info("No governance bodies to edit. Add one in the 'Add New Body' tab first!")
+        else:
+            # Select body to edit
+            body_names = df['Name'].tolist()
+            selected_body_name = st.selectbox("Select Body to Edit", body_names)
+            
+            if selected_body_name:
+                # Get the row for this body
+                body_idx = df[df['Name'] == selected_body_name].index[0]
+                row = df.loc[body_idx]
+                
+                # Display current RAG status prominently
+                rag_emoji = get_rag_color(row['RAG_Status'])
+                col_rag1, col_rag2, col_rag3 = st.columns(3)
+                with col_rag1:
+                    st.metric("Current RAG Status", f"{rag_emoji} {row['RAG_Status']}")
+                with col_rag2:
+                    st.metric("Current Recommendation", row['RAG_Recommendation'])
+                with col_rag3:
+                    st.metric("Efficiency Score", f"{row['Efficiency_Score']}/5")
+                
+                st.markdown("---")
+                
+                with st.form(f"edit_body_form_{body_idx}"):
+                    st.markdown("### Basic Information")
+                    col1, col2, col3 = st.columns(3)
+                    
+                    with col1:
+                        edit_name = st.text_input("Body Name*", value=row['Name'])
+                        edit_type = st.selectbox("Type*", ["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership", "Working Group"],
+                                               index=["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership", "Working Group"].index(row['Type']) if row['Type'] in ["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership", "Working Group"] else 0)
+                    
+                    with col2:
+                        edit_level = st.selectbox("Organisational Level*", ["Strategic", "Tactical", "Operational", "Community"],
+                                                index=["Strategic", "Tactical", "Operational", "Community"].index(row['Level']))
+                        edit_outcome = st.text_input("Outcome Focus*", value=row['Outcome_Focus'])
+                    
+                    with col3:
+                        fw_current = [p.strip() for p in row['Fairer_Westminster_Alignment'].split(",")]
+                        fw_options = list(FAIRER_WESTMINSTER_PRINCIPLES.keys())
+                        edit_fw = st.multiselect("Fairer Westminster Pillars*", fw_options, default=fw_current)
+                        edit_process = st.selectbox("Process Type*", ["Explicit", "Partially Explicit", "Mixed", "Tacit"],
+                                                  index=["Explicit", "Partially Explicit", "Mixed", "Tacit"].index(row['Process_Type']))
+                    
+                    st.markdown("---")
+                    st.markdown("### Performance Metrics")
+                    col4, col5, col6, col7 = st.columns(4)
+                    
+                    with col4:
+                        edit_efficiency = st.select_slider("Efficiency Score*", options=[1, 2, 3, 4, 5], value=row['Efficiency_Score'])
+                    
+                    with col5:
+                        edit_value = st.select_slider("Value Added*", options=[1, 2, 3, 4, 5], value=row['Value_Added'])
+                    
+                    with col6:
+                        edit_dup = st.select_slider("Duplication Risk*", options=[1, 2, 3, 4, 5], value=row['Duplication_Risk'])
+                    
+                    with col7:
+                        edit_cost = st.selectbox("Cost Impact*", ["Low", "Medium", "High", "Very High"],
+                                               index=["Low", "Medium", "High", "Very High"].index(row['Cost_Impact']))
+                    
+                    st.markdown("---")
+                    st.markdown("### RAG Assessment")
+                    col8, col9 = st.columns(2)
+                    
+                    with col8:
+                        edit_rag = st.radio("RAG Status*", ["Green", "Amber", "Red"], 
+                                          index=["Green", "Amber", "Red"].index(row['RAG_Status']),
+                                          horizontal=True)
+                    
+                    with col9:
+                        edit_rag_rec = st.radio("Recommendation*", ["Keep", "Merge", "Close"],
+                                              index=["Keep", "Merge", "Close"].index(row['RAG_Recommendation']),
+                                              horizontal=True)
+                    
+                    st.markdown("---")
+                    st.markdown("### Stakeholder Information")
+                    col10, col11 = st.columns(2)
+                    
+                    with col10:
+                        edit_primary = st.text_area("Primary Stakeholders*", value=row['Primary_Stakeholders'])
+                        edit_power = st.select_slider("Stakeholder Power*", options=["Low", "Medium", "High"], 
+                                                    value=row['Stakeholder_Power'])
+                    
+                    with col11:
+                        edit_secondary = st.text_area("Secondary Stakeholders", value=row['Secondary_Stakeholders'])
+                        edit_interest = st.select_slider("Stakeholder Interest*", options=["Low", "Medium", "High", "Very High"],
+                                                       value=row['Stakeholder_Interest'])
+                    
+                    st.markdown("---")
+                    st.markdown("### Operational Details")
+                    col12, col13 = st.columns(2)
+                    
+                    with col12:
+                        edit_activities = st.text_area("Value Chain Activities*", value=row['Value_Chain_Activities'])
+                        edit_speed = st.select_slider("Decision Speed*", options=["Fast", "Medium", "Slow"],
+                                                    value=row['Decision_Speed'])
+                    
+                    with col13:
+                        edit_posture = st.selectbox("Innovation Posture*", ["Exploit", "Explore", "Ambidextrous"],
+                                                  index=["Exploit", "Explore", "Ambidextrous"].index(row['Innovation_Posture']))
+                    
+                    st.markdown("---")
+                    
+                    col_save, col_delete = st.columns([3, 1])
+                    
+                    with col_save:
+                        save_button = st.form_submit_button("💾 Save Changes", type="primary", use_container_width=True)
+                    
+                    with col_delete:
+                        delete_button = st.form_submit_button("🗑️ Delete Body", type="secondary", use_container_width=True)
+                    
+                    if save_button:
+                        # Validation
+                        if not edit_name or not edit_outcome or not edit_fw or not edit_primary or not edit_activities:
+                            st.error("❌ Please fill in all required fields (marked with *)")
+                        else:
+                            # Update the dataframe
+                            st.session_state.bodies_df.at[body_idx, 'Name'] = edit_name
+                            st.session_state.bodies_df.at[body_idx, 'Type'] = edit_type
+                            st.session_state.bodies_df.at[body_idx, 'Level'] = edit_level
+                            st.session_state.bodies_df.at[body_idx, 'Outcome_Focus'] = edit_outcome
+                            st.session_state.bodies_df.at[body_idx, 'Fairer_Westminster_Alignment'] = ", ".join(edit_fw)
+                            st.session_state.bodies_df.at[body_idx, 'Process_Type'] = edit_process
+                            st.session_state.bodies_df.at[body_idx, 'Efficiency_Score'] = edit_efficiency
+                            st.session_state.bodies_df.at[body_idx, 'Cost_Impact'] = edit_cost
+                            st.session_state.bodies_df.at[body_idx, 'Value_Added'] = edit_value
+                            st.session_state.bodies_df.at[body_idx, 'Duplication_Risk'] = edit_dup
+                            st.session_state.bodies_df.at[body_idx, 'RAG_Status'] = edit_rag
+                            st.session_state.bodies_df.at[body_idx, 'RAG_Recommendation'] = edit_rag_rec
+                            st.session_state.bodies_df.at[body_idx, 'Primary_Stakeholders'] = edit_primary
+                            st.session_state.bodies_df.at[body_idx, 'Secondary_Stakeholders'] = edit_secondary
+                            st.session_state.bodies_df.at[body_idx, 'Stakeholder_Power'] = edit_power
+                            st.session_state.bodies_df.at[body_idx, 'Stakeholder_Interest'] = edit_interest
+                            st.session_state.bodies_df.at[body_idx, 'Value_Chain_Activities'] = edit_activities
+                            st.session_state.bodies_df.at[body_idx, 'Decision_Speed'] = edit_speed
+                            st.session_state.bodies_df.at[body_idx, 'Innovation_Posture'] = edit_posture
+                            
+                            st.success(f"✅ Successfully updated **{edit_name}**! All visualisations have been updated.")
+                            st.info("💡 Navigate to other pages to see how your changes affect the analyses.")
+                    
+                    if delete_button:
+                        st.session_state.bodies_df = st.session_state.bodies_df.drop(body_idx).reset_index(drop=True)
+                        st.success(f"🗑️ Successfully deleted **{selected_body_name}**! All visualisations have been updated.")
+                        st.rerun()
+
+# GOVERNANCE BODIES
+elif page == "🏛️ Governance Bodies":
+    st.title("🏛️ Governance Bodies Overview")
+    st.markdown("*View and filter all governance bodies. Use **➕ Manage Bodies** page to add or edit entries.*")
+    
+    df = st.session_state.bodies_df
     
     # Filter options
     col1, col2, col3, col4 = st.columns(4)
@@ -716,111 +949,36 @@ elif page == "🏛️ Governance Bodies":
         rag_emoji = get_rag_color(row['RAG_Status'])
         
         with st.expander(f"{rag_emoji} **{row['Name']}** ({row['Type']}) - {row['RAG_Recommendation']}"):
-            if st.session_state.edit_mode:
-                # Edit mode
-                with st.form(f"edit_form_{idx}"):
-                    col1, col2, col3 = st.columns(3)
-                    
-                    with col1:
-                        st.markdown("**Profile**")
-                        edit_type = st.selectbox("Type", ["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership"], 
-                                                index=["Board", "Cabinet", "Committee", "Place-Based Board", "Partnership"].index(row['Type']),
-                                                key=f"type_{idx}")
-                        edit_level = st.selectbox("Level", ["Strategic", "Tactical", "Operational", "Community"],
-                                                 index=["Strategic", "Tactical", "Operational", "Community"].index(row['Level']),
-                                                 key=f"level_{idx}")
-                        edit_outcome = st.text_input("Outcome Focus", row['Outcome_Focus'], key=f"outcome_{idx}")
-                        edit_process = st.selectbox("Process Type", ["Explicit", "Partially Explicit", "Mixed", "Tacit"],
-                                                   index=["Explicit", "Partially Explicit", "Mixed", "Tacit"].index(row['Process_Type']),
-                                                   key=f"process_{idx}")
-                    
-                    with col2:
-                        st.markdown("**Performance & Status**")
-                        edit_efficiency = st.slider("Efficiency", 1, 5, row['Efficiency_Score'], key=f"eff_{idx}")
-                        edit_value = st.slider("Value Added", 1, 5, row['Value_Added'], key=f"val_{idx}")
-                        edit_dup = st.slider("Duplication Risk", 1, 5, row['Duplication_Risk'], key=f"dup_{idx}")
-                        edit_rag = st.selectbox("RAG Status", ["Green", "Amber", "Red"],
-                                               index=["Green", "Amber", "Red"].index(row['RAG_Status']),
-                                               key=f"rag_{idx}")
-                        edit_rag_rec = st.selectbox("RAG Recommendation", ["Keep", "Merge", "Close"],
-                                                   index=["Keep", "Merge", "Close"].index(row['RAG_Recommendation']),
-                                                   key=f"rec_{idx}")
-                    
-                    with col3:
-                        st.markdown("**Stakeholders**")
-                        edit_primary = st.text_area("Primary Stakeholders", row['Primary_Stakeholders'], key=f"prim_{idx}")
-                        edit_secondary = st.text_area("Secondary Stakeholders", row['Secondary_Stakeholders'], key=f"sec_{idx}")
-                    
-                    col4, col5 = st.columns(2)
-                    with col4:
-                        fw_current = row['Fairer_Westminster_Alignment'].split(", ")
-                        edit_fw = st.multiselect("Fairer Westminster Alignment", 
-                                                list(FAIRER_WESTMINSTER_PRINCIPLES.keys()),
-                                                default=fw_current,
-                                                key=f"fw_{idx}")
-                    
-                    with col5:
-                        edit_activities = st.text_area("Value Chain Activities", row['Value_Chain_Activities'], key=f"act_{idx}")
-                    
-                    col_save, col_delete = st.columns([1, 1])
-                    
-                    with col_save:
-                        save_button = st.form_submit_button("💾 Save Changes")
-                    
-                    with col_delete:
-                        delete_button = st.form_submit_button("🗑️ Delete Body", type="secondary")
-                    
-                    if save_button:
-                        # Update the dataframe
-                        st.session_state.bodies_df.at[idx, 'Type'] = edit_type
-                        st.session_state.bodies_df.at[idx, 'Level'] = edit_level
-                        st.session_state.bodies_df.at[idx, 'Outcome_Focus'] = edit_outcome
-                        st.session_state.bodies_df.at[idx, 'Process_Type'] = edit_process
-                        st.session_state.bodies_df.at[idx, 'Efficiency_Score'] = edit_efficiency
-                        st.session_state.bodies_df.at[idx, 'Value_Added'] = edit_value
-                        st.session_state.bodies_df.at[idx, 'Duplication_Risk'] = edit_dup
-                        st.session_state.bodies_df.at[idx, 'RAG_Status'] = edit_rag
-                        st.session_state.bodies_df.at[idx, 'RAG_Recommendation'] = edit_rag_rec
-                        st.session_state.bodies_df.at[idx, 'Primary_Stakeholders'] = edit_primary
-                        st.session_state.bodies_df.at[idx, 'Secondary_Stakeholders'] = edit_secondary
-                        st.session_state.bodies_df.at[idx, 'Fairer_Westminster_Alignment'] = ", ".join(edit_fw)
-                        st.session_state.bodies_df.at[idx, 'Value_Chain_Activities'] = edit_activities
-                        st.success(f"✅ Saved changes to {row['Name']}")
-                        st.rerun()
-                    
-                    if delete_button:
-                        st.session_state.bodies_df = st.session_state.bodies_df.drop(idx).reset_index(drop=True)
-                        st.success(f"🗑️ Deleted {row['Name']}")
-                        st.rerun()
+            col1, col2, col3 = st.columns(3)
             
-            else:
-                # View mode
-                col1, col2, col3 = st.columns(3)
-                
-                with col1:
-                    st.markdown("**Profile**")
-                    st.markdown(f"Level: {row['Level']}")
-                    st.markdown(f"Outcome Focus: {row['Outcome_Focus']}")
-                    st.markdown(f"Process Type: {row['Process_Type']}")
-                    st.markdown(f"Decision Speed: {row['Decision_Speed']}")
-                
-                with col2:
-                    st.markdown("**Performance Metrics**")
-                    st.metric("Efficiency", f"{row['Efficiency_Score']}/5")
-                    st.metric("Value Added", f"{row['Value_Added']}/5")
-                    st.metric("Duplication Risk", f"{row['Duplication_Risk']}/5")
-                    st.markdown(f"**RAG Status:** {get_rag_color(row['RAG_Status'])} {row['RAG_Status']}")
-                    st.markdown(f"**Recommendation:** {row['RAG_Recommendation']}")
-                
-                with col3:
-                    st.markdown("**Stakeholders**")
-                    st.markdown(f"**Primary:** {row['Primary_Stakeholders']}")
-                    st.markdown(f"**Secondary:** {row['Secondary_Stakeholders']}")
-                    st.markdown(f"**Power:** {row['Stakeholder_Power']}")
-                    st.markdown(f"**Interest:** {row['Stakeholder_Interest']}")
-                
-                st.markdown(f"**Fairer Westminster Alignment:** {row['Fairer_Westminster_Alignment']}")
-                st.markdown(f"**Value Chain Activities:** {row['Value_Chain_Activities']}")
+            with col1:
+                st.markdown("**Profile**")
+                st.markdown(f"Level: {row['Level']}")
+                st.markdown(f"Outcome Focus: {row['Outcome_Focus']}")
+                st.markdown(f"Process Type: {row['Process_Type']}")
+                st.markdown(f"Decision Speed: {row['Decision_Speed']}")
+            
+            with col2:
+                st.markdown("**Performance Metrics**")
+                st.metric("Efficiency", f"{row['Efficiency_Score']}/5")
+                st.metric("Value Added", f"{row['Value_Added']}/5")
+                st.metric("Duplication Risk", f"{row['Duplication_Risk']}/5")
+                st.markdown(f"**RAG Status:** {get_rag_color(row['RAG_Status'])} {row['RAG_Status']}")
+                st.markdown(f"**Recommendation:** {row['RAG_Recommendation']}")
+            
+            with col3:
+                st.markdown("**Stakeholders**")
+                st.markdown(f"**Primary:** {row['Primary_Stakeholders']}")
+                st.markdown(f"**Secondary:** {row['Secondary_Stakeholders']}")
+                st.markdown(f"**Power:** {row['Stakeholder_Power']}")
+                st.markdown(f"**Interest:** {row['Stakeholder_Interest']}")
+            
+            st.markdown(f"**Fairer Westminster Alignment:** {row['Fairer_Westminster_Alignment']}")
+            st.markdown(f"**Value Chain Activities:** {row['Value_Chain_Activities']}")
+            
+            # Add edit button
+            if st.button(f"✏️ Edit {row['Name']}", key=f"edit_btn_{idx}", use_container_width=True):
+                st.info("💡 Navigate to **➕ Manage Bodies** page to edit this entry.")
 
 # EFFICIENCY ANALYSIS (keeping all original graphs)
 elif page == "📊 Efficiency Analysis":
